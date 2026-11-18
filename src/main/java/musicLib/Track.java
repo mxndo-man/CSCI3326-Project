@@ -1,5 +1,21 @@
 package musicLib;
 
+/**
+ * Base class for any playable song in the music library.
+ *
+ * 
+ * A {@code Track} holds the metadata that every song has, no matter where
+ * it comes from: an ID, a song name and an author. Subclasses such as
+ * {@link localFile}(local MP3s) and {@link spotifyTrack} decide how the song
+ * actually plays by
+ * implementing {@link #play()}, {@link #pause()} and {@link #stop()}.
+ *
+ * The class also counts how many {@code Track} instances have been
+ * created, using a static counter shared by all subclasses
+ * (see {@link #getCounter()}).
+ *
+ * @see Library
+ */
 public abstract class Track {
   private final String songId;
   private final String songName;
@@ -28,11 +44,11 @@ public abstract class Track {
   }
 
   public String getAuthor() {
-    return this.getAuthor();
+    return this.author;
   }
 
-  public int getCounter() {
-    return this.counter;
+  public static int getCounter() {
+    return counter;
   }
 
   @Override
