@@ -1,4 +1,4 @@
-package musicPlayer;
+package musicLib;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -9,7 +9,7 @@ public class localFile extends Track {
   private final File file;
 
   public localFile(File file) {
-    //Constructor inorder to implement the approriate names for the song file.
+    // Constructor inorder to implement the approriate names for the song file.
     super(file.getAbsolutePath(), file.getName().replace(".mp3", ""), "Unknown Artist");
     this.file = file;
   }
@@ -17,7 +17,7 @@ public class localFile extends Track {
   @Override
   public void pause() {
     // Simply pauses the file
-    if (musicPlayer != null){
+    if (musicPlayer != null) {
       musicPlayer.pause();
     }
   }
@@ -25,20 +25,20 @@ public class localFile extends Track {
   @Override
   public void play() {
     // If null then find the path to the file inorder to play it.
-    if (MediaPlayer == null){
+    if (musicPlayer == null) {
       musicPlayer = new MediaPlayer(new Media(file.toURI().toString()));
     }
     musicPlayer.play();
 
   }
 
-  @Override 
-  public void stop(){
-    if (musicPlayer != null){
+  @Override
+  public void stop() {
+    if (musicPlayer != null) {
       musicPlayer.stop();
       // To clear up memory of the track
       musicPlayer.dispose();
-      musicPlayer=null;
+      musicPlayer = null;
     }
   }
 
