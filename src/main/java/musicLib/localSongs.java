@@ -8,23 +8,28 @@ public class localSongs implements MusicSource {
   private final List<Track> files = new ArrayList<>();
   private boolean enable = true;
 
-  @Override 
-  public void addFile(File mp3){ files.add(new localFile(mp3));} // adding a file"mp3" to the list
+  public void addFile(File mp3) {
+    files.add(new localFile(mp3));
+  } // adding a file"mp3" to the list
 
-  @Override 
-  public List<Track> getTracks(){ // List of tracks 
+  @Override
+  public List<Track> getTracks() { // List of tracks
     return this.files;
   }
 
-  @Override 
-  public boolean isAvailable(){ // With an mp3 player the music will always be avaible.
+  @Override
+  public boolean isAvailable() { // With an mp3 player the music will always be avaible.
     return true;
   }
 
   @Override
-  public void setEnabled(boolean enable){
-    this.enable=enable;
+  public void setEnabled(boolean enable) {
+    this.enable = enable;
   }
 
+  @Override
+  public boolean isEnabled() {
+    return this.enable;
+  }
 
 }
