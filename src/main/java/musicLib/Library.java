@@ -3,28 +3,29 @@ package musicLib;
 import java.util.ArrayList;
 import java.util.List;
 
-import musicLib.MusicSource;
-import musicLib.Track;
-
+/**
+ * A class where users can see their library for the music gui.
+ * 
+ * The library holds every {@link MusicSource} (local MP3s, Spotify) and
+ * combines their tracks into a single list.
+ */
 public class Library {
   private final List<MusicSource> sources = new ArrayList<>();
 
-  public void addSources(MusicSource s){
-    if (!sources.contains(s)){ // stop duplicates from being added
+  public void addSource(MusicSource s) {
+    if (!sources.contains(s)) { // stop duplicates from being added
       sources.add(s);
     }
   }
 
-  public void deleteSong(MusicSource s){
-    if (sources.contains(s)){
-      sources.remove(s);
-    }
+  public void removeSource(MusicSource s) {
+    sources.remove(s); // does nothing if s isn't in the list
   }
 
-  public List<Track> combineTracks(){
+  public List<Track> combineTracks() {
     List<Track> result = new ArrayList<>();
-    for(MusicSource i : sources){
-      if(i.isAvailable() && i.setEnabled()){
+    for (MusicSource i : sources) {
+      if (i.isAvailable() && i.isEnabled()) {
         result.addAll(i.getTracks());
       }
     }
@@ -32,8 +33,8 @@ public class Library {
     return result;
   }
 
-  public boolean isEmpty(){
-    return sources.isEmpty(); //Will be used for the skip feature.
+  public boolean isEmpty() {
+    return combineTracks().isEmpty(); // Will be used for the skip feature.
   }
-  
+
 }
